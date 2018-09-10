@@ -1,7 +1,7 @@
 import static groovy.io.FileType.FILES
 
 pipeline{
-  agent any{
+  agent any
   stages{
     stage("get list of all jenkins_files"){
       steps{
@@ -14,5 +14,4 @@ pipeline{
       }
     }
   }
-}
 }
