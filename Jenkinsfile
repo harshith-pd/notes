@@ -6,7 +6,7 @@ pipeline{
         script{
           sh "ls > ${env.WORKSPACE}/groovy_snippets/dir.txt"
           result = readFile("${env.WORKSPACE}/groovy_snippets/dir.txt").trim()
-          println (result)
+          println ("sadasdfasd"+result)
         }
       }
     }
