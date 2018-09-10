@@ -7,7 +7,12 @@ pipeline{
           sh "ls > ${env.WORKSPACE}/groovy_snippets/dir.txt"
           result = readFile("${env.WORKSPACE}/groovy_snippets/dir.txt").trim()
           for (item in result.tokenize('\n')){
-            println ("numero" + item)
+            if fileExists("${env.WORKSPACE}/groovy_snippets/${item}/Jenkinsfile"){
+            println ("Jenkins file found at" + "${env.WORKSPACE}/groovy_snippets/${item}")
+            }
+            else{
+            println ("No jenkins file found at" + "${env.WORKSPACE}/groovy_snippets/${item}")
+            }
           }
         }
       }
