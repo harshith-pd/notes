@@ -10,8 +10,7 @@ pipeline{
           for (item in result.tokenize('\n')){
             if (fileExists("${env.WORKSPACE}/groovy_snippets/${item}/Jenkinsfile")){
             println ("Jenkins file found at" + "${env.WORKSPACE}/groovy_snippets/${item}")
-            jenkins_file = load "${env.WORKSPACE}/groovy_snippets/${item}/Jenkinsfile"
-            jenkins_file.start()
+            sh "groovy ${env.WORKSPACE}/groovy_snippets/${item}/Jenkinsfile.Groovy"
             }
             else{
             println ("No jenkins file found at" + "${env.WORKSPACE}/groovy_snippets/${item}")
