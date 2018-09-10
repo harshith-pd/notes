@@ -6,7 +6,7 @@ pipeline{
         script{
           sh "ls > ${env.WORKSPACE}/groovy_snippets/dir.txt"
           result = readFile("${env.WORKSPACE}/groovy_snippets/dir.txt").trim()
-          for item in result.tokenize('\n'){
+          for (item in result.tokenize('\n')){
             println ("numero" + item)
           }
         }
