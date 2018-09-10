@@ -4,9 +4,8 @@ pipeline{
     stage("get list of all jenkins_files"){
       steps{
         script{
-        new File(".").eachDir() { dir ->
-            println dir.getPath()
-            }
+          sh "ls > ${env.WORKSPACE}/groovy_snippets/dir.txt"
+          sh "cat ${env.WORKSPACE}/groovy_snippets/dir.txt"
         }
       }
     }
