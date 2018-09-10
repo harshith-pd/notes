@@ -1,3 +1,55 @@
-Jenkins
 
-I
+Datatypes:
+
+List:
+def empId = [321, 345, 897]
+methods available: add(), get(), contains(), reverse(), sort(), size()
+
+Map/Dict:
+def empDetails = [Name : Sam, Id : 1234, Age : 28, 'Date of Birth':11-Aug]
+methods available: containsKey(), get(), keySet(), size(), values()
+
+Date & Range
+
+Class structure:
+class Person {
+    String name 
+    int age
+}
+
+p=new Person()
+p.name="Sam"   //*setname is implicitly called
+p.age=30       //**setage method is implicitly called
+println p.name //*getname method is implicitly called
+println p.age  //*getage method is implicitly called
+
+
+Conditionals:
+
+int a = 12 
+if (a<100) {
+  println("The value is less than 100"); 
+} 
+else if (a>100) { 
+  println("The value is greater than 100"); 
+} else { 
+  println("The value is equal to 100"); 
+} 
+
+
+int x=100
+switch(x)
+{
+case 100: //matches strings and regex
+    println("The value is 100")
+    break;
+case 200: 
+    println("The value is 200")
+    break;
+case 300: 
+    println("The value is 300")
+    break;
+default:
+    println("The value is unknown")
+    break;
+}
