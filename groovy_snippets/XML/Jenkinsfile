@@ -1,10 +1,8 @@
 pipeline {
   agent any
-	{
-		stage (list my env){
-			steps{
-			    echo(env.getEnvironment().collect({environmentVariable ->  "${environmentVariable.key} = ${environmentVariable.value}"}).join("\n"))
-			}
+	stages{
+		stage(test){
+			steps{ sh 'echo "hello"' }
 		}
 	}
 }
