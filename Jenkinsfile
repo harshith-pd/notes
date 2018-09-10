@@ -4,7 +4,7 @@ pipeline{
     stage("get list of all jenkins_files"){
       steps{
         script{
-          sh "ls > ${env.WORKSPACE}/groovy_snippets/dir.txt"
+          sh "ls ${env.WORKSPACE}/groovy_snippets/ > ${env.WORKSPACE}/groovy_snippets/dir.txt"
           result = readFile("${env.WORKSPACE}/groovy_snippets/dir.txt").trim()
           for (item in result.tokenize('\n')){
             if (fileExists("${env.WORKSPACE}/groovy_snippets/${item}/Jenkinsfile")){
