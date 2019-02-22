@@ -1,23 +1,25 @@
 pipeline{
-  agent any
-  stages{
-    stage("get list of all jenkins_files"){
-      steps{
-        script{
-          sh "ls ${env.WORKSPACE}/groovy_snippets/ > ${env.WORKSPACE}/groovy_snippets/dir.txt"
-          result = readFile("${env.WORKSPACE}/groovy_snippets/dir.txt").trim()
-          def jenkins_file = ""
-          for (item in result.tokenize('\n')){
-            if (fileExists("${env.WORKSPACE}/groovy_snippets/${item}/Jenkinsfile")){
-            println ("Jenkins file found at" + "${env.WORKSPACE}/groovy_snippets/${item}")
-            sh "groovy ${env.WORKSPACE}/groovy_snippets/${item}/Jenkinsfile.Groovy"
+    agent {label 'linux'}
+    stages{
+        stage("Checkout"){
+            steps{
+                script{
+                    def changeLogSets = currentBuild.changeSets
+                    echo "${changeLogSets} list of the changes"
+                    for (int i = 0; i < changeLogSets.size(); i++) {
+                        def entries = changeLogSets[i].items
+                        for (int j = 0; j < entries.length; j++) {
+                            def entry = entries[j]
+                            echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
+                            def files = new ArrayList(entry.affectedFiles)
+                            for (int k = 0; k < files.size(); k++) {
+                                def file = files[k]
+                                echo "  ${file.editType.name} ${file.path}"
+                            }
+                        }
+                    }
+                }
             }
-            else{
-            println ("No jenkins file found at" + "${env.WORKSPACE}/groovy_snippets/${item}")
-            }
-          }
         }
-      }
     }
-  }
 }
