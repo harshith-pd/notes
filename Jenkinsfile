@@ -4,7 +4,7 @@ pipeline{
         stage("Checkout"){
             steps{
                 script{
-                        getChangeString()
+                        echo "${getChangeString()} is the changeset"
                         }
                     }
                 }
