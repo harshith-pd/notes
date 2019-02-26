@@ -5,6 +5,7 @@ pipeline{
             steps{
                 script{
                         echo "${getChangeString()} is the changeset"
+                        sh "git rev-list --all --remotes"
                         }
                     }
                 }
