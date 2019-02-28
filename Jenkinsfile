@@ -7,7 +7,7 @@ pipeline{
                         echo "${getChangeString()} is the changeset"
                         echo "git rev-list --all --remotes"
                         parsed_data = readYaml (file: "sample.yml") 
-			echo "parsed_data"
+			echo "${parsed_data}"
                         }
                     }
                 }
