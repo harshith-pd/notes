@@ -5,9 +5,9 @@ pipeline{
             steps{
                 script{
                         echo "${getChangeString()} is the changeset"
-                        sh "git rev-list --all --remotes"
+                        echo "git rev-list --all --remotes"
                         parsed_data = readYaml (file: "sample.yml") 
-				        sh "echo parsed_data"
+			echo "parsed_data"
                         }
                     }
                 }
